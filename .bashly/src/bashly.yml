@@ -1,0 +1,96 @@
+name: template_env
+help: Template bashly environment
+version: 1.1.3
+
+# Dependencies needed to run the environment
+dependencies:
+  - curl
+  - docker
+  - git
+
+commands:
+  ##
+  # Environment Commands
+  ##
+  - name: build
+    short: b
+    help: Build all of the images or the specified one
+    group: Environment
+    args:
+    - name: service
+      help: Specify service to build for
+      required: false
+
+  - name: check
+    short: c
+    help: Check the status of the environment
+
+  - name: destroy
+    help: Wipe out the entire Docker environment from the system
+
+  - name: down
+    short: d
+    help: Stop and destroy all containers
+    flags:
+      - long: --volumes
+        short: -v
+        help: Destroy the volumes as well
+        required: false
+
+  - name: init
+    short: i
+    help: Initialize the entire Docker environment
+
+  - name: logs
+    short: l
+    help: Display and tail the logs of all containers or the specified one
+    args:
+    - name: container
+      help: Specify container to get the logs for
+      required: false
+
+  - name: restart
+    short: r
+    help: Restart all containers or the specified one
+    args:
+    - name: container
+      help: Specify container to restart
+      required: false
+
+  - name: ssl
+    help: Internal SSL management commands
+    commands:
+      - name: install
+        short: i
+        help: Install the root CA inside all (default) or a list of containers
+        args:
+        - name: container
+          help: Specify container to restart
+          required: false
+
+      - name: fix
+        short: f
+        help: Destroy and restart containers to regenerate and reinstall certificates
+
+  - name: start
+    help: Start the environment (all containers)
+
+  - name: stop
+    help: Stop the environment (all containers)
+
+  - name: update
+    help: Update the environment
+    flags:
+      - long: --rebuild
+        short: -r
+        help: Also rebuild the images via Docker Compose
+        required: false
+      - long: --ssl
+        help: Also re-install the SSL certificates
+        required: false
+
+  ##
+  # Services Commands
+  ##
+  
+  # Add project-specific commands here

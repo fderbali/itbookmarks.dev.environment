@@ -1,0 +1,21 @@
+version: '3.7'
+
+# Services
+services:
+
+  # Nginx Service
+  nginx:
+    platform: linux/x86_64
+    build: ./.docker/nginx
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      default:
+        aliases:
+          - template.test
+    volumes:
+      - ./.docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./.docker/nginx/certs:/etc/nginx/certs
+    depends_on:
+      - client
