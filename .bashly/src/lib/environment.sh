@@ -77,7 +77,7 @@ repositories () {
             git -C "src/$repository" pull origin || git -C "src/$repository" pull origin dev
         else
             call_to_action "Repository not initialized, cloning..." 
-            git clone "git@github.com:appwapp/$(config_get repositories_prefix).$repository.git" "src/$repository"
+            git clone "git@github.com:fderbali/$(config_get repositories_prefix).$repository.git" "src/$repository"
         fi
     done
 }

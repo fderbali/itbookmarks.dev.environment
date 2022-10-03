@@ -115,4 +115,4 @@ If you still have issues, have a look at [this article](http://www.devside.net/w
 * [Extremely slow on Windows 10](https://github.com/docker/for-win/issues/1936);
 * [Unable to bind ports](https://github.com/docker/for-win/issues/3171).
 
-> ⬅️ [Go back to the general instructions](https://github.com/appwapp/itbookmarks.dev.environment)
+> ⬅️ [Go back to the general instructions](https://github.com/fderbali/itbookmarks.dev.environment)

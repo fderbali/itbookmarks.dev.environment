@@ -22,7 +22,7 @@ It is also highly advised to have a terminal running [Bash](https://www.gnu.org/
 
 ### OS Exceptions
 
-* **Windows**: If you are running Microsoft's OS, please [head over here for special instructions and help](https://github.com/appwapp/cocoapp.dev.environment/blob/master/WINDOWS.md), and keep referring to it in case of trouble with the rest of the setup.
+* **Windows**: If you are running Microsoft's OS, please [head over here for special instructions and help](https://github.com/fderbali/cocoapp.dev.environment/blob/master/WINDOWS.md), and keep referring to it in case of trouble with the rest of the setup.
 * **macOS (M1 chipset)**: If your mac has an M1 chipset, please replace the `docker-compose.yml` file with the `docker-compose-macos-m1.yml` file. You don't need to do this on an Intel chipset.
 
 ## Setup
@@ -30,7 +30,7 @@ It is also highly advised to have a terminal running [Bash](https://www.gnu.org/
 Clone the current repository as a `itbookmarks.dev.environment` directory:
 
 ```
-$ git clone git@github.com:appwapp/itbookmarks.dev.environment.git itbookmarks.dev.environment && cd itbookmarks.dev.environment
+$ git clone git@github.com:fderbali/itbookmarks.dev.environment.git itbookmarks.dev.environment && cd itbookmarks.dev.environment
 ```
 
 Run Bash on your system (e.g.: Git Bash), append the following function to your Bash config (`.bash_profile`, `.bashrc`, `.zshrc`...):
@@ -132,7 +132,7 @@ It will remove the containers, volumes and images associated to the Docker Compo
 
 The `itbookmarks` commands are essentially sugarcoating Docker and Docker Compose commands to make the developer's life easier whilst interacting with the ecosystem in a day-to-day way.
 
-Have a look at the [`.bashly/src`](https://github.com/appwapp/itbookmarks.dev.environment/blob/master/.bashly/src) files for reference.
+Have a look at the [`.bashly/src`](https://github.com/fderbali/itbookmarks.dev.environment/blob/master/.bashly/src) files for reference.
 
 Overall, any regular Docker command can be run from the project's root. For example:
 
