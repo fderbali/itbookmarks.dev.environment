@@ -1,6 +1,6 @@
-# Local Docker environment for {TEMPLATE_PROJECT_NAME}
+# Local Docker environment for {Itbookmarks}
 
-A Docker-based local environment and toolbox for {TEMPLATE_PROJECT_NAME}.
+A Docker-based local environment and toolbox for {Itbookmarks}.
 
 ## Prerequisites
 
@@ -27,32 +27,32 @@ It is also highly advised to have a terminal running [Bash](https://www.gnu.org/
 
 ## Setup
 
-Clone the current repository as a `{TEMPLATE_REPOSITORY}` directory:
+Clone the current repository as a `{itbookmarks.dev.environment}` directory:
 
 ```
-$ git clone git@github.com:appwapp/{TEMPLATE_REPOSITORY}.git {TEMPLATE_REPOSITORY} && cd {TEMPLATE_REPOSITORY}
+$ git clone git@github.com:appwapp/{itbookmarks.dev.environment}.git {itbookmarks.dev.environment} && cd {itbookmarks.dev.environment}
 ```
 
 Run Bash on your system (e.g.: Git Bash), append the following function to your Bash config (`.bash_profile`, `.bashrc`, `.zshrc`...):
 
 ```bash
-{TEMPLATE_COMMAND} () { cd <PATH>/{TEMPLATE_REPOSITORY} && bash .bashly/{TEMPLATE_COMMAND} $*; cd - }
+{itbookmarks} () { cd <PATH>/{itbookmarks.dev.environment} && bash .bashly/{itbookmarks} $*; cd - }
 ```
 
-Where `<PATH>` is the absolute path leading to the local `{TEMPLATE_REPOSITORY}` folder (where the current repository was cloned).
+Where `<PATH>` is the absolute path leading to the local `{itbookmarks.dev.environment}` folder (where the current repository was cloned).
 
 Open a new terminal window or `source` your Bash config file for the changes to take effect.
 
 List the available commands by running:
 
 ```bash
-$ {TEMPLATE_COMMAND}
+$ {itbookmarks}
 ```
 
 Now run the following command:
 
 ```bash
-$ {TEMPLATE_COMMAND} init
+$ {itbookmarks} init
 ```
 
 This will clone the required repositories, download and build the images listed in `docker-compose.yml`, create and start the corresponding containers, and do a bunch of other useful things (this might take a while).
@@ -63,47 +63,47 @@ This will clone the required repositories, download and build the images listed 
 
 ## Global usage
 
-While `{TEMPLATE_COMMAND} init` will also start the containers, once everything is installed the regular way of doing so is by running the following command:
+While `{itbookmarks} init` will also start the containers, once everything is installed the regular way of doing so is by running the following command:
 
 ```bash
-$ {TEMPLATE_COMMAND} start
+$ {itbookmarks} start
 ```
 
 And to stop the containers:
 
 ```bash
-$ {TEMPLATE_COMMAND} stop
+$ {itbookmarks} stop
 ```
 
 To restart the already-running containers:
 
 ```bash
-$ {TEMPLATE_COMMAND} restart
+$ {itbookmarks} restart
 ```
 
 To scrap everything and start over with a clean environment:
 
 ```bash
-$ {TEMPLATE_COMMAND} init
+$ {itbookmarks} init
 ```
 
 Finally, run the following command to ensure your local environment is up to date:
 
 ```bash
-$ {TEMPLATE_COMMAND} update
+$ {itbookmarks} update
 ```
 
 A lot of other useful commands are available, list them all by simply running:
 
 ```bash
-$ {TEMPLATE_COMMAND}
+$ {itbookmarks}
 ```
 
 ## SSL
 
-The SSL part of this local Docker environment is handled by a wildcard self-signed certificate for `*.{TEMPLATE_DOMAIN}`.
+The SSL part of this local Docker environment is handled by a wildcard self-signed certificate for `*.{itbookmarks.test}`.
 
-The first time you run `{TEMPLATE_COMMAND} init`, Nginx's container is used to generate the certificate in `.docker/nginx/certs`, which is then automatically installed on your machine (Mac or Debian-based) as well as in the relevant containers. It is used by Nginx to serve the various components.
+The first time you run `{itbookmarks} init`, Nginx's container is used to generate the certificate in `.docker/nginx/certs`, which is then automatically installed on your machine (Mac or Debian-based) as well as in the relevant containers. It is used by Nginx to serve the various components.
 
 This setup effectively allows communication over SSL everywhere, mimicking a production environment.
 
@@ -114,8 +114,8 @@ On Firefox, you might need to set the `security.enterprise_roots.enabled` proper
 If you need to generate and install a new certificate, run the following commands:
 
 ```bash
-$ {TEMPLATE_COMMAND} ssl generate
-$ {TEMPLATE_COMMAND} ssl install
+$ {itbookmarks} ssl generate
+$ {itbookmarks} ssl install
 ```
 
 ## Ditch
@@ -123,16 +123,16 @@ $ {TEMPLATE_COMMAND} ssl install
 To completely rid the system of the project, run the following command:
 
 ```bash
-$ {TEMPLATE_COMMAND} destroy
+$ {itbookmarks} destroy
 ```
 
 It will remove the containers, volumes and images associated to the Docker Compose setup, only leaving the content of the various repositories.
 
 ## Advanced
 
-The `{TEMPLATE_COMMAND}` commands are essentially sugarcoating Docker and Docker Compose commands to make the developer's life easier whilst interacting with the ecosystem in a day-to-day way.
+The `{itbookmarks}` commands are essentially sugarcoating Docker and Docker Compose commands to make the developer's life easier whilst interacting with the ecosystem in a day-to-day way.
 
-Have a look at the [`.bashly/src`](https://github.com/appwapp/{TEMPLATE_REPOSITORY}/blob/master/.bashly/src) files for reference.
+Have a look at the [`.bashly/src`](https://github.com/appwapp/{itbookmarks.dev.environment}/blob/master/.bashly/src) files for reference.
 
 Overall, any regular Docker command can be run from the project's root. For example:
 
@@ -141,7 +141,7 @@ $ docker compose down -v
 $ docker compose up -d
 ```
 
-Basically, anything that is not covered by a `{TEMPLATE_COMMAND}` shortcut can be run manually.
+Basically, anything that is not covered by a `{itbookmarks}` shortcut can be run manually.
 
 For instance, you might want to open a shell on a running container:
 

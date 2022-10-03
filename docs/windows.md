@@ -1,4 +1,4 @@
-> ⬅️ [Go back to the general instructions](https://github.com/appwapp/{TEMPLATE_REPOSITORY})
+> ⬅️ [Go back to the general instructions](https://github.com/fderbali/{itbookmarks.dev.environment})
 
 # Local Docker environment for Bank of Canada - instructions for Windows
 
@@ -16,7 +16,7 @@ Read more about [virtualization on Windows](https://docs.microsoft.com/en-us/vir
 
 ## Terminal
 
-To be able to use the Docker environment for {TEMPLATE_PROJECT_NAME} properly, you will need a terminal running both Git and Bash. We recommend [Git Bash](https://gitforwindows.org/), which comes with Git for Windows.
+To be able to use the Docker environment for {Itbookmarks} properly, you will need a terminal running both Git and Bash. We recommend [Git Bash](https://gitforwindows.org/), which comes with Git for Windows.
 
 Also, based on this [article](https://willi.am/blog/2016/08/08/docker-for-windows-interactive-sessions-in-mintty-git-bash/), you'll be asked to choose an emulator : select the `Windows' default console` instead of the `MinTTY` one.
 
@@ -52,12 +52,12 @@ Finally, run `vi ~/.bash_profile` and paste the following:
 
 ```
 function boc {
-    cd <PATH>/{TEMPLATE_REPOSITORY} && bash .bashly/{TEMPLATE_COMMAND} $*
+    cd <PATH>/{itbookmarks.dev.environment} && bash .bashly/{itbookmarks} $*
         cd -
 }
 ```
 
-Where `<PATH>` is the absolute path leading to the local `{TEMPLATE_REPOSITORY}` folder.
+Where `<PATH>` is the absolute path leading to the local `{itbookmarks.dev.environment}` folder.
 
 Run `source ~/.bash_profile` followed by `boc`: the application menu should display.
 
@@ -92,7 +92,7 @@ Now, back in the main MMC window, from the console tree on the left-hand side,
 right-click on `Certificates > Trusted Root Certification Authorities` and go to `All tasks > import`.
 
 In the Certificate Import Wizard, click `Next`.  
-`Browse` and select the `Certificate authority file (.docker/nginx/certs/{TEMPLATE_DOMAIN}.crt)` and click `Next`.  
+`Browse` and select the `Certificate authority file (.docker/nginx/certs/{itbookmarks.test}.crt)` and click `Next`.  
 Select `Put all certificates in the following store`, click `browse` and select `Trusted root Certification Authorities` if not already selected, then click `Next`.  
 Then click `Finish`.
 
@@ -115,4 +115,4 @@ If you still have issues, have a look at [this article](http://www.devside.net/w
 * [Extremely slow on Windows 10](https://github.com/docker/for-win/issues/1936);
 * [Unable to bind ports](https://github.com/docker/for-win/issues/3171).
 
-> ⬅️ [Go back to the general instructions](https://github.com/appwapp/{TEMPLATE_REPOSITORY})
+> ⬅️ [Go back to the general instructions](https://github.com/appwapp/{itbookmarks.dev.environment})
