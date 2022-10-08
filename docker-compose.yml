@@ -17,4 +17,46 @@ services:
       - ./.docker/nginx/conf.d:/etc/nginx/conf.d
       - ./.docker/nginx/certs:/etc/nginx/certs
     depends_on:
+      - api
       - client
+  client:
+    build:
+      context: ./src/client.webapp
+      target: development
+    image: itbookmarks/client
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    working_dir: /var/www
+    volumes:
+      - ./src/client.webapp/src:/var/www:delegated
+      - client-dist:/var/www/dist
+      - ./.docker/nginx/certs:/usr/local/share/ca-certificates:delegated,ro
+      - ./.docker/client/init.sh:/opt/files/init.sh:delegated
+      - ./.docker/client/vue.config.js:/var/www/vue.config.js
+    depends_on:
+      - api
+  api:
+    build:
+      context: ./src/api.webapp
+      target: development
+    image: itbookmarks/api.webapp
+    working_dir: /var/www
+    volumes:
+      - ./src/api.webapp/src:/var/www
+      - ./.docker/nginx/certs:/usr/local/share/ca-certificates:ro
+      - ./.docker/api/init.sh:/opt/files/init.sh
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:8
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mysqldata:/var/lib/mysql:delegated
+      - ./.docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf:delegated
+volumes:
+  mysqldata:
+  client-dist:

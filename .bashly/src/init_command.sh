@@ -19,7 +19,7 @@ env \
 if [ ! -f .docker/nginx/certs/{TEMPLATE_DOMAIN}.crt ]; then
     ssl_generate
 else
-    success "Using existing self-signed certificate. Run '{TEMPLATE_COMMAND} ssl generate' and '{TEMPLATE_COMMAND} ssl install' if you need a new one."
+    success "Using existing self-signed certificate. Run 'itbookmarks ssl generate' and 'itbookmarks ssl install' if you need a new one."
 fi
 
 docker_compose_start \

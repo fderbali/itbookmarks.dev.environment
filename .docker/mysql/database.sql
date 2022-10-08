@@ -1,0 +1,3 @@
+CREATE DATABASE itbookmarksdb;
+CREATE USER 'api'@'%' IDENTIFIED BY 'api';
+GRANT ALL PRIVILEGES ON *.* TO 'api'@'%';
