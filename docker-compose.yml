@@ -12,10 +12,13 @@ services:
     networks:
       default:
         aliases:
-          - template.test
+          - api.itbookmarks.test
+          - client.itbookmarks.test
     volumes:
-      - ./.docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./.docker/nginx/conf.d:/etc/nginx/conf.d:ro
       - ./.docker/nginx/certs:/etc/nginx/certs
+      - ./src/api.webapp/src:/var/www/api:ro
+      - /var/www/api/storage/app/public/:/var/www/api/public/storage
     depends_on:
       - api
       - client
