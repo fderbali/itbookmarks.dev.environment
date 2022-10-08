@@ -47,8 +47,8 @@ itbookmarks_usage() {
   echo "  update    Update the environment"
   printf "\nAPI Commands:\n"
   echo "  api       API-specific commands."
-  printf "\nrim Commands:\n"
-  echo "  rim       Rim client-specific commands."
+  printf "\nClient Commands:\n"
+  echo "  client        client-specific commands."
   echo
 
   if [[ -n $long_usage ]]; then
@@ -657,20 +657,20 @@ itbookmarks_api_phpunit_usage() {
 }
 
 # :command.usage
-itbookmarks_rim_usage() {
+itbookmarks_client_usage() {
   if [[ -n $long_usage ]]; then
-    printf "itbookmarks rim - Rim client-specific commands.\n"
+    printf "itbookmarks client - client-specific commands.\n"
     echo
 
   else
-    printf "itbookmarks rim - Rim client-specific commands.\n"
+    printf "itbookmarks client - client-specific commands.\n"
     echo
 
   fi
 
   printf "Usage:\n"
-  printf "  itbookmarks rim [command]\n"
-  printf "  itbookmarks rim [command] --help | -h\n"
+  printf "  itbookmarks client [command]\n"
+  printf "  itbookmarks client [command] --help | -h\n"
   echo
   # :command.usage_commands
   printf "Commands:\n"
@@ -688,20 +688,20 @@ itbookmarks_rim_usage() {
     # :command.usage_examples
     printf "Examples:\n"
 
-    printf "  itbookmarks rim <command> [options] [arguments]\n"
+    printf "  itbookmarks client <command> [options] [arguments]\n"
     echo
 
   fi
 }
 
 # :command.usage
-itbookmarks_rim_init_usage() {
+itbookmarks_client_init_usage() {
   if [[ -n $long_usage ]]; then
-    printf "itbookmarks rim init - Run the client application's initialization script\n"
+    printf "itbookmarks client init - Run the client application's initialization script\n"
     echo
 
   else
-    printf "itbookmarks rim init - Run the client application's initialization script\n"
+    printf "itbookmarks client init - Run the client application's initialization script\n"
     echo
 
   fi
@@ -710,8 +710,8 @@ itbookmarks_rim_init_usage() {
   echo
 
   printf "Usage:\n"
-  printf "  itbookmarks rim init\n"
-  printf "  itbookmarks rim init --help | -h\n"
+  printf "  itbookmarks client init\n"
+  printf "  itbookmarks client init --help | -h\n"
   echo
 
   if [[ -n $long_usage ]]; then
@@ -725,20 +725,20 @@ itbookmarks_rim_init_usage() {
 }
 
 # :command.usage
-itbookmarks_rim_npm_usage() {
+itbookmarks_client_npm_usage() {
   if [[ -n $long_usage ]]; then
-    printf "itbookmarks rim npm - Run a npm command on the client application\n"
+    printf "itbookmarks client npm - Run a npm command on the client application\n"
     echo
 
   else
-    printf "itbookmarks rim npm - Run a npm command on the client application\n"
+    printf "itbookmarks client npm - Run a npm command on the client application\n"
     echo
 
   fi
 
   printf "Usage:\n"
-  printf "  itbookmarks rim npm [ANY NPM COMMAND, ARGUMENT OR FLAG...]\n"
-  printf "  itbookmarks rim npm --help | -h\n"
+  printf "  itbookmarks client npm [ANY NPM COMMAND, ARGUMENT OR FLAG...]\n"
+  printf "  itbookmarks client npm --help | -h\n"
   echo
 
   if [[ -n $long_usage ]]; then
@@ -1265,7 +1265,7 @@ itbookmarks_init_command() {
       ; docker_compose_down -v \
       ; docker_compose_build \
       ; service_init api \
-      ; service_init rim
+      ; service_init client
 
   if [ ! -f .docker/nginx/certs/itbookmarks.test.crt ]; then
       ssl_generate
@@ -1407,17 +1407,17 @@ itbookmarks_api_phpunit_command() {
 }
 
 # :command.function
-itbookmarks_rim_init_command() {
-  # src/rim_init_command.sh
+itbookmarks_client_init_command() {
+  # src/client_init_command.sh
   # Initialize admin
-  service_init rim
+  service_init client
 }
 
 # :command.function
-itbookmarks_rim_npm_command() {
-  # src/rim_npm_command.sh
+itbookmarks_client_npm_command() {
+  # src/client_npm_command.sh
   # NPM command on admin service
-  service_npm rim ${other_args[*]}
+  service_npm client ${other_args[*]}
 }
 
 # :command.parse_requirements
@@ -1541,10 +1541,10 @@ parse_requirements() {
     shift $#
     ;;
 
-  rim )
-    action="rim"
+  client )
+    action="client"
     shift
-    itbookmarks_rim_parse_requirements "$@"
+    itbookmarks_client_parse_requirements "$@"
     shift $#
     ;;
 
@@ -2457,12 +2457,12 @@ itbookmarks_api_phpunit_parse_requirements() {
 }
 
 # :command.parse_requirements
-itbookmarks_rim_parse_requirements() {
+itbookmarks_client_parse_requirements() {
   # :command.fixed_flags_filter
   case "${1:-}" in
   --help | -h )
     long_usage=yes
-    itbookmarks_rim_usage
+    itbookmarks_client_usage
     exit
     ;;
 
@@ -2479,20 +2479,20 @@ itbookmarks_rim_parse_requirements() {
   init | i )
     action="init"
     shift
-    itbookmarks_rim_init_parse_requirements "$@"
+    itbookmarks_client_init_parse_requirements "$@"
     shift $#
     ;;
 
   npm )
     action="npm"
     shift
-    itbookmarks_rim_npm_parse_requirements "$@"
+    itbookmarks_client_npm_parse_requirements "$@"
     shift $#
     ;;
 
   # :command.command_fallback
   * )
-    itbookmarks_rim_usage
+    itbookmarks_client_usage
     exit 1
     ;;
 
@@ -2525,12 +2525,12 @@ itbookmarks_rim_parse_requirements() {
 }
 
 # :command.parse_requirements
-itbookmarks_rim_init_parse_requirements() {
+itbookmarks_client_init_parse_requirements() {
   # :command.fixed_flags_filter
   case "${1:-}" in
   --help | -h )
     long_usage=yes
-    itbookmarks_rim_init_usage
+    itbookmarks_client_init_usage
     exit
     ;;
 
@@ -2538,7 +2538,7 @@ itbookmarks_rim_init_parse_requirements() {
   # :command.environment_variables_filter
   # :command.dependencies_filter
   # :command.command_filter
-  action="rim init"
+  action="client init"
   # :command.parse_requirements_while
   while [[ $# -gt 0 ]]; do
     key="$1"
@@ -2567,12 +2567,12 @@ itbookmarks_rim_init_parse_requirements() {
 }
 
 # :command.parse_requirements
-itbookmarks_rim_npm_parse_requirements() {
+itbookmarks_client_npm_parse_requirements() {
   # :command.fixed_flags_filter
   case "${1:-}" in
   --help | -h )
     long_usage=yes
-    itbookmarks_rim_npm_usage
+    itbookmarks_client_npm_usage
     exit
     ;;
 
@@ -2580,7 +2580,7 @@ itbookmarks_rim_npm_parse_requirements() {
   # :command.environment_variables_filter
   # :command.dependencies_filter
   # :command.command_filter
-  action="rim npm"
+  action="client npm"
   # :command.parse_requirements_while
   while [[ $# -gt 0 ]]; do
     key="$1"
@@ -2771,28 +2771,28 @@ run() {
       itbookmarks_api_phpunit_command
     fi
 
-  elif [[ $action == "rim" ]]; then
+  elif [[ $action == "client" ]]; then
     if [[ ${args[--help]:-} ]]; then
       long_usage=yes
-      itbookmarks_rim_usage
+      itbookmarks_client_usage
     else
-      itbookmarks_rim_command
+      itbookmarks_client_command
     fi
 
-  elif [[ $action == "rim init" ]]; then
+  elif [[ $action == "client init" ]]; then
     if [[ ${args[--help]:-} ]]; then
       long_usage=yes
-      itbookmarks_rim_init_usage
+      itbookmarks_client_init_usage
     else
-      itbookmarks_rim_init_command
+      itbookmarks_client_init_command
     fi
 
-  elif [[ $action == "rim npm" ]]; then
+  elif [[ $action == "client npm" ]]; then
     if [[ ${args[--help]:-} ]]; then
       long_usage=yes
-      itbookmarks_rim_npm_usage
+      itbookmarks_client_npm_usage
     else
-      itbookmarks_rim_npm_command
+      itbookmarks_client_npm_command
     fi
 
   elif [[ $action == "root" ]]; then

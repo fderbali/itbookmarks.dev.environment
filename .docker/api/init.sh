@@ -59,25 +59,21 @@ echo 'Installing Composer dependencies...'
 composer install -d /var/www
 
 # Make sure the MySQL database is available
-echo 'Waiting for MySQL to be available'
-count=1
-while [ $count -le 10 ] && ! mysql -uroot -proot -hmysql -p3306 -e 'exit' ; do
-    sleep 5
-    ((count++))
-done
-if [ "$count" -ge 10 ]; then
-    echo >&2 'error: failed to connect to MySQL after 10 attempts'
-    exit 1
-fi
-echo 'MySQL connection successful!'
+#echo 'Waiting for MySQL to be available'
+#count=1
+#while [ $count -le 10 ] && ! mysql -uroot -proot -hmysql -p3306 -e 'exit' ; do
+#    sleep 5
+#    ((count++))
+#done
+#if [ "$count" -ge 10 ]; then
+#    echo >&2 'error: failed to connect to MySQL after 10 attempts'
+#    exit 1
+#fi
+#echo 'MySQL connection successful!'
 
 # Database
 echo 'Creating the database...'
 php /var/www/artisan migrate --seed
-
-# Create the roles
-php /var/www/artisan role:create --name=admin
-php /var/www/artisan role:create --name=member
 
 # Create the symbolic link
 php /var/www/artisan storage:link
