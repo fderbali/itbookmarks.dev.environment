@@ -61,7 +61,7 @@ composer install -d /var/www
 # Make sure the MySQL database is available
 echo 'Waiting for MySQL to be available'
 count=1
-while [ $count -le 10 ] && ! mysql -uroot -proot -hmysql -P3306 -e 'exit' ; do
+while [ $count -le 10 ] && ! mysql -uroot -proot -hmysql -p3306 -e 'exit' ; do
     sleep 5
     ((count++))
 done

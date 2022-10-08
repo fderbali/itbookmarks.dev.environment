@@ -57,6 +57,7 @@ services:
     volumes:
       - mysqldata:/var/lib/mysql:delegated
       - ./.docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf:delegated
+      - ./.docker/mysql/databases.sql:/docker-entrypoint-initdb.d/databases.sql:delegated
 volumes:
   mysqldata:
   client-dist:
