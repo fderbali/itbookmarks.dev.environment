@@ -22,6 +22,7 @@ services:
     depends_on:
       - api
       - client
+  # Client Vue.js
   client:
     build:
       context: ./src/client.webapp
@@ -39,6 +40,7 @@ services:
       - ./.docker/client/vue.config.js:/var/www/vue.config.js
     depends_on:
       - api
+  #API Laravel
   api:
     build:
       context: ./src/api.webapp
@@ -51,6 +53,9 @@ services:
       - ./.docker/api/init.sh:/opt/files/init.sh
     depends_on:
       - mysql
+      - redis
+      - mailhog
+  # MySQL service
   mysql:
     image: mysql:8
     ports:
@@ -61,6 +66,28 @@ services:
       - mysqldata:/var/lib/mysql:delegated
       - ./.docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf:delegated
       - ./.docker/mysql/databases.sql:/docker-entrypoint-initdb.d/databases.sql:delegated
+  # Redis
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redisdata:/data
+  # Mailhog Service
+  mailhog:
+    image: mailhog/mailhog:latest
+    privileged: true
+    user: root
+    ports:
+      - 1025:1025
+      - 8025:8025
+    environment:
+      MH_HOSTNAME: mail.itbookmarks.test
+      MH_MAILDIR_PATH: /maildir
+      MH_STORAGE: maildir
+    volumes:
+      - maildata:/maildir:delegated
 volumes:
   mysqldata:
   client-dist:
+  redisdata:
+  maildata:
